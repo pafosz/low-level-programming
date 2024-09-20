@@ -3,8 +3,7 @@
 
 int arr[100];
 
-int main() {
-	
+int main() {	
 	unsigned n = 0;
 	(void)scanf("%u", &n);
 
@@ -21,8 +20,7 @@ int main() {
 
 	unsigned left = 0, right = n - 1;
 	unsigned last_swap = 0;
-	while (left < right)
-	{
+	while (left < right){
 		for (unsigned i = left; i < right; ++i) {
 			if (arr[i + 1] < arr[i]) {
 				int tmp = arr[i];
