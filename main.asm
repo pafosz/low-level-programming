@@ -1,5 +1,8 @@
 %include "io64.inc"
 
+section .data
+space db ' ', 0
+
 section .bss
 array: resd 100
 
@@ -60,14 +63,14 @@ main:
     cmp ecx, r9d
     je .cycle2d2_end
     
-    mov eax, [array + 4*(r10d)]
-    mov ebx, [array + 4*(r10d-1)]
+    mov eax, [array + 4*(ecx)]
+    mov ebx, [array + 4*(ecx-1)]
     
     cmp eax, ebx
     jge .next2
     
-    mov [array + 4*(r10d)], ebx
-    mov [array + 4*(r10d-1)], eax
+    mov [array + 4*(ecx)], ebx
+    mov [array + 4*(ecx-1)], eax
     mov r11d, ecx
     
 .next2:
@@ -84,12 +87,13 @@ main:
 .cycle2_end:
 
     xor ecx, ecx
+    
 .print_loop:
     cmp ecx, r8d
     je .end_print
     mov eax, [array + 4*ecx]
     PRINT_DEC 4, eax
-    
+    PRINT_STRING [space]
     inc ecx  
     jmp .print_loop
 .end_print:

@@ -32,9 +32,9 @@ cycle2_end:
 	i = 0;
 	printf("\nlet's sort it out...");
 
-	unsigned left = 0;      // r9
-	unsigned right = n - 1; // r10
-	unsigned last_swap = 0; // r11
+	unsigned left = 0;      // r9d
+	unsigned right = n - 1; // r10d
+	unsigned last_swap = 0; // r11d
 	
 
 cycle3_start:
@@ -42,8 +42,8 @@ cycle3_start:
 
 cycle3d1_start:
 	if (i == right) goto cycle3d1_end;
-	if (arr[i + 1] >= arr[i]) goto next1;
-	long long tmp = arr[i + 1]; //rax
+	if (arr[i + 1] >= arr[i]) goto next1; // ebx >= eax
+	int tmp = arr[i + 1]; 
 	arr[i + 1] = arr[i];
 	arr[i] = tmp;
 	last_swap = i;
